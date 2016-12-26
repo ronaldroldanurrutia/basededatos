@@ -61,8 +61,8 @@ class estudiante : public persona<int>{
         int practicas;
         int grado;
         int nota;
-        vector<materia*>pesos;
-        vector<materia*>:: iterator ps;
+        vector<materia1*>pesos;
+        vector<materia1*>:: iterator ps;
     public:
         estudiante(int _examen =0,int _practicas=0,int _grado =0){
             this->examen = _examen;
@@ -98,22 +98,25 @@ class estudiante : public persona<int>{
             return (examen+practicas)/2;
         }
         void curso(){
+            materia1 elemento("",0);
             int materiass;
             cout<<"Ingrese cantidad de materias"<<endl;
             cin>>materiass;
-            this->_size+=materiass;
             string materias;
             ps = pesos.begin();
             for(int i=0;i < materiass;i++){
-                pesos.push_back(new materia);
+                pesos.push_back(new materia1);
                 cout<<"Ingrese Materia "<<i+1<<":";
                 cin>>materias;
                 cout<<"Ingrese Peso"<<i+1<<":";
                 int n;
                 cin>>n;
+                materia1 elemento2(materias,n);
+                elemento = elemento+elemento2;
                 (*ps)->insermateria(materias);
                 (*ps)->inserpeso(n);
             }
+            cout<<elemento<<endl;
         }
         void quitarmateria(string materias){
             ps = pesos.begin();
@@ -138,8 +141,8 @@ class estudiante : public persona<int>{
 
 class profesor : public persona<int> {
     private:
-        vector<materia*>pesos;
-        vector<materia*>::iterator ps;
+        vector<materia1*>pesos;
+        vector<materia1*>::iterator ps;
         int sueldo;
         int _size;
 
@@ -155,22 +158,25 @@ class profesor : public persona<int> {
             return this->sueldo;
         }
         void curso(){
+            materia1 elemento("",0);
             int materiass;
             cout<<"Ingrese cantidad de materias"<<endl;
             cin>>materiass;
-            this->_size+=materiass;
             string materias;
             ps = pesos.begin();
             for(int i=0;i < materiass;i++){
-                pesos.push_back(new materia);
+                pesos.push_back(new materia1);
                 cout<<"Ingrese Materia "<<i+1<<":";
                 cin>>materias;
                 cout<<"Ingrese Peso"<<i+1<<":";
                 int n;
                 cin>>n;
+                materia1 elemento2(materias,n);
+                elemento = elemento+elemento2;
                 (*ps)->insermateria(materias);
                 (*ps)->inserpeso(n);
             }
+            cout<<elemento<<endl;
         }
         void materias(void){
             for(int i=0;i<this->_size;i++){
