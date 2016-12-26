@@ -101,12 +101,18 @@ class estudiante : public persona<int>{
             int materiass;
             cout<<"Ingrese cantidad de materias"<<endl;
             cin>>materiass;
+            this->_size+=materiass;
             string materias;
+            ps = pesos.begin();
             for(int i=0;i < materiass;i++){
                 pesos.push_back(new materia);
                 cout<<"Ingrese Materia "<<i+1<<":";
                 cin>>materias;
-                ps[i]->insermateria(materias);
+                cout<<"Ingrese Peso"<<i+1<<":";
+                int n;
+                cin>>n;
+                (*ps)->insermateria(materias);
+                (*ps)->inserpeso(n);
             }
         }
         void quitarmateria(string materias){
@@ -149,16 +155,22 @@ class profesor : public persona<int> {
             return this->sueldo;
         }
         void curso(){
-            pesos.push_back(new materia);
-            ps = pesos.end()-1;
-            string elemento;
-            cout<<"Ingrese Materia: ";
-            cin>>elemento;
-            int n ;
-            cout<<"Ingrese Peso: ";
-            (*ps)->insermateria(elemento);
-            (*ps)->inserpeso(n);
-            this->_size++;
+            int materiass;
+            cout<<"Ingrese cantidad de materias"<<endl;
+            cin>>materiass;
+            this->_size+=materiass;
+            string materias;
+            ps = pesos.begin();
+            for(int i=0;i < materiass;i++){
+                pesos.push_back(new materia);
+                cout<<"Ingrese Materia "<<i+1<<":";
+                cin>>materias;
+                cout<<"Ingrese Peso"<<i+1<<":";
+                int n;
+                cin>>n;
+                (*ps)->insermateria(materias);
+                (*ps)->inserpeso(n);
+            }
         }
         void materias(void){
             for(int i=0;i<this->_size;i++){
