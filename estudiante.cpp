@@ -10,31 +10,31 @@
 using namespace std;
 
 
-
+template<typename T>
 class persona{
     protected:
-        int edad;
+        T edad;
         string nombre;
-        int id;
-        int sexo;
+        T id;
+        T sexo;
     public:
-        persona(int _edad=0,string _nombre="persona",int _id=0,int _sexo=0){
+        persona(T _edad=0,string _nombre="persona",T _id=0,T _sexo=0){
             this->edad = _edad;
             nombre = _nombre;
             this->id = _id;
             this->sexo = _sexo;
         }
-        int devolverid(void){
+        T  devolverid(void){
             return id;
         }
-        void inserid(int x){
+        void inserid(T x){
             this->id = x;
 
         }
-        int devolveredad(void){
+        T devolveredad(void){
             return this->edad;
         }
-        void insertedad(int x){
+        void insertedad(T x){
             this->edad = x;
         }
         string nombres(void){
@@ -43,19 +43,19 @@ class persona{
         void insernombre(string elemento){
             this->nombre = elemento;
         }
-        int devolversexo(void){
+        T devolversexo(void){
             return this->sexo;
         }
-        void insersexo(int x){
+        void insersexo(T x){
             this->sexo = x;
         }
-        virtual  int promedio(void){return 0;}
+        virtual  T promedio(void){return 0;}
         virtual void curso(void){cout<<"Ronald"<<endl;}
 
 
 };
 
-class estudiante : public persona{
+class estudiante : public persona<int>{
     private:
         int examen;
         int practicas;
@@ -130,7 +130,7 @@ class estudiante : public persona{
 };
 
 
-class profesor : public persona {
+class profesor : public persona<int> {
     private:
         vector<materia*>pesos;
         vector<materia*>::iterator ps;
