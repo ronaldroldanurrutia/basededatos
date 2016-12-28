@@ -1,4 +1,5 @@
 #include<iostream>
+#include<fstream>
 #define whites 10
 #define blacks 20
 
@@ -6,10 +7,11 @@
 
 
 using namespace std;
+ofstream file("mostrar.txt");
 
 void espacios(int n){
     for(int i=0;i<n;i++){
-        cout<<" ";
+        file <<" ";
     }
 
 }
@@ -28,14 +30,14 @@ int numero(int n){
     }
     return suma;
 }
-void spaces(int elemento){
-    cout<<elemento;
-    espacios(whites-numero(elemento));
+void spaces(int elemento,int m){
+    file <<elemento;
+    espacios(m);
 
 }
-void spaces1(string elemento){
-    cout<<elemento;
-    espacios(whites-longitud(elemento));
+void spaces1(string elemento,int m){
+    file <<elemento;
+    espacios(m);
 
 }
 

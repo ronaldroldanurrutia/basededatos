@@ -3,11 +3,8 @@
 
 
 
-
 using namespace std;
 
-int global =0;
-int mundo = 0;
 class tablamaestros{
     private:
         int _size;
@@ -18,9 +15,9 @@ class tablamaestros{
             this->_size = _tam;
         }
         void ponerprofesor(void){
-            pr = Pr.end();
+
             Pr.push_back(new profesor);
-            (*pr)->curso();
+            pr = Pr.end()-1;
             string elemento;
             this->_size++;
             int n;
@@ -49,65 +46,88 @@ class tablamaestros{
             cout<<"Ingrese Sueldo: ";
             cin>>n;
             (*pr)->insersueldo(n);
-            global++;
-
+            (*pr)->curso();
         }
         void mostrarprofesores(void){
-
-            spaces1("nombres");
-            spaces1("edad");
-            spaces1("id");
-            spaces1("sexo");
-            spaces1("sueldo");
-            cout<<endl;
+            pr = Pr.begin();
             for(int i=0;i<this->_size;i++){
-                    cout<<(*pr)->nombres();
-                    espacios(whites-longitud((*pr)->nombres()));
-                    cout<<(*pr)->devolveredad();
-                    espacios(whites-numero((*pr)->devolveredad()));
-                    cout<<(*pr)->devolverid();
-                    espacios(whites-numero((*pr)->devolverid()));
-                    cout<<(*pr)->devolversexo();
-                    espacios(whites-numero((*pr)->devolversexo()));
-                    cout<<(*pr)->devolversueldo()<<endl;
+                    file << "profesor" << i+1 << endl;
+                    spaces1("nombres",13);
+                    file << ": ";
+                    spaces1((*pr)->nombres(),0);
+                    file << endl;
+                    spaces1("edad",19);
+                    file << ": ";
+                    spaces((*pr)->devolveredad(),0);
+                    file << endl;
+                    spaces1("id",25);
+                    file << ": ";
+                    spaces((*pr)->devolverid(),0);
+                    file << endl;
+                    spaces1("sexo",20);
+                    file << ": ";
+                    spaces((*pr)->devolversexo(),0);
+                    file << endl;
+                    spaces1("sueldo",17);
+                    file << ": ";
+                    spaces((*pr)->devolversueldo(),0);
+
+                    file <<endl;
+                    (*pr)->ponercursos() ;
+                    pr++;
                 }
 
 
+
+        }
+        void cursosysueldos(void){
+            pr = Pr.begin();
+            int i=0;
+            for(;i < this->_size;i++){
+                file << "profesor" << i+1 << ":" << endl ;
+                (*pr)->ponercursos();
+                pr++;
+            }
         }
         void buscarprofesor(string profesor){
-            spaces1("nombres");
-            spaces1("edad");
-            spaces1("id");
-            spaces1("sexo");
-            spaces1("sueldo");
             for(pr = Pr.begin();pr!=Pr.end();pr++){
                 if((*pr)->nombres()==profesor){
-                    cout<<(*pr)->nombres();
-                    espacios(whites-longitud((*pr)->nombres()));
-                    cout<<(*pr)->devolveredad();
-                    espacios(whites-numero((*pr)->devolveredad()));
-                    cout<<(*pr)->devolverid();
-                    espacios(whites-numero((*pr)->devolverid()));
-                    cout<<(*pr)->devolversexo();
-                    espacios(whites-numero((*pr)->devolversexo()));
-                    cout<<(*pr)->devolversueldo()<<endl;
+                    spaces1("nombres",13);
+                    file << ": ";
+                    spaces1((*pr)->nombres(),0);
+                    file << endl;
+                    spaces1("edad",19);
+                    file << ": ";
+                    spaces((*pr)->devolveredad(),0);
+                    file << endl;
+                    spaces1("id",25);
+                    file << ": ";
+                    spaces((*pr)->devolverid(),0);
+                    file << endl;
+                    spaces1("sexo",19);
+                    file << ": ";
+                    spaces((*pr)->devolversexo(),0);
+                    file << endl;
+                    spaces1("sueldo",17);
+                    file << ": ";
+                    spaces((*pr)->devolversueldo(),0);
                     return ;
                 }
             }
-            cout<<"No Existe"<<endl;
+            file <<"No Existe"<<endl;
 
         }
         void buscarmaterias(string profesor){
             for(pr=Pr.begin();pr !=Pr.end();pr++){
                 if((*pr)->nombres()==profesor){
-                    cout<<"Nombre: "<<(*pr)->nombres()<<endl;
+                    file <<"Nombre: "<<(*pr)->nombres()<<endl;
                     (*pr)->materias();
-                    cout<<endl;
+                    file <<endl;
                     return ;
                 }
 
             }
-            cout<<"No se encuentra "<<endl;
+            file <<"No se encuentra "<<endl;
 
         }
         void ordenarpornombre(void){
@@ -125,7 +145,7 @@ class tablamaestros{
 
             }
         }
-        void ordenarpornota(void){
+        void ordenaredad(void){
             for(int i=0;i<this->_size-1;i++){
                 for(int j=0;j<this->_size-1-i;j++){
                     if(Pr[j]->devolveredad()>Pr[j+1]->devolveredad()){
@@ -136,8 +156,21 @@ class tablamaestros{
                         Pr[j+1] = l[0];
                     }
                 }
-
             }
+        }
+        void ordenarporsueldo(void){
+            for(int i=0;i<this->_size-1;i++){
+                for(int j=0;j<this->_size-1-i;j++){
+                    if(Pr[j]->devolversueldo()>Pr[j+1]->devolversueldo()){
+                        vector<profesor*>l;
+                        l.push_back(new profesor);
+                        l[0] = Pr[j];
+                        Pr[j]=Pr[j+1];
+                        Pr[j+1] = l[0];
+                    }
+                }
+            }
+
         }
         void borrarprofesor(string nombre){
             pr = Pr.begin();
@@ -148,9 +181,12 @@ class tablamaestros{
                 }
                 pr++;
             }
-            cout<<"No se encuentra"<<endl;
+            file <<"No se encuentra"<<endl;
             return ;
 
+        }
+        void tam(void){
+            cout<<"Hay :"<<this->_size<<"maestros"<<endl;
         }
 
 
@@ -219,7 +255,7 @@ class tablaestudiantes{
                 }
                 es++;
             }
-            cout<<"No se encuentra"<<endl;
+            file <<"No se encuentra"<<endl;
             return ;
 
         }
@@ -252,61 +288,69 @@ class tablaestudiantes{
             }
         }
         void mostraralumnos(void){
-            spaces1("nombres");
-            spaces1("edad");
-            spaces1("id");
-            spaces1("sexo");
-            spaces1("examen");
-            spaces1("practica");
-            spaces1("grado");
-            cout<<endl;
-            for(es = Es.begin();es != Es.end() ;es++){
-                    cout<<(*es)->nombres();
-                    espacios(whites-longitud((*es)->nombres()));
-                    cout<<(*es)->devolveredad();
-                    espacios(whites-numero((*es)->devolveredad()));
-                    cout<<(*es)->devolverid();
-                    espacios(whites-numero((*es)->devolverid()));
-                    cout<<(*es)->devolversexo();
-                    espacios(whites-numero((*es)->devolversexo()));
-                    cout<<(*es)->devolverexamen();
-                    espacios(whites-numero((*es)->devolverexamen()));
-                    cout<<(*es)->devolverpractica();
-                    espacios(whites-numero((*es)->devolverpractica()));
-                    cout<<(*es)->devolvergrado();
-                    espacios(whites-numero((*es)->devolvergrado()));
-                    cout<<endl;
+            int i=1;
+            for(es = Es.begin();es != Es.end() ;es++,i++){
+                    file << "alumno" << i << endl;
+                    spaces1("nombres",13);
+                    file << ": ";
+                    spaces1((*es)->nombres(),0);
+                    file << endl;
+                    spaces1("edad",19);
+                    file << ": ";
+                    spaces((*es)->devolveredad(),0);
+                    file << endl;
+                    spaces1("id",25);
+                    file << ": ";
+                    spaces((*es)->devolverid(),0);
+                    file << endl;
+                    spaces1("sexo",19);
+                    file << ": ";
+                    spaces((*es)->devolversexo(),0);
+                    file << endl;
+                    spaces1("examen",17);
+                    file << ": ";
+                    spaces((*es)->devolverexamen(),0);
+                    spaces1("practica",14) ;
+                    file << ": ";
+                    spaces((*es)->devolverpractica(),0);
+                    spaces1("grado",17);
+                    file << ": ";
+                    spaces((*es)->devolvergrado(),0);
+                    file <<endl;
             }
         }
         void buscaralumno(string alumno){
-            spaces1("nombres");
-            spaces1("edad");
-            spaces1("id");
-            spaces1("sexo");
-            spaces1("examen");
-            spaces1("practica");
-            spaces1("grado");
-            cout<<endl;
             for(es = Es.begin();es != Es.end();es++){
                 if((*es)->nombres()==alumno){
-                    cout<<(*es)->nombres();
-                    espacios(whites-longitud((*es)->nombres()));
-                    cout<<(*es)->devolveredad();
-                    espacios(whites-numero((*es)->devolveredad()));
-                    cout<<(*es)->devolverid();
-                    espacios(whites-numero((*es)->devolverid()));
-                    cout<<(*es)->devolversexo();
-                    espacios(whites-numero((*es)->devolversexo()));
-                    cout<<(*es)->devolverexamen();
-                    espacios(whites-numero((*es)->devolverexamen()));
-                    cout<<(*es)->devolverpractica();
-                    espacios(whites-numero((*es)->devolverpractica()));
-                    cout<<(*es)->devolvergrado();
-                    espacios(whites-numero((*es)->devolvergrado()));
+                    spaces1("nombres",13);
+                    file << ": ";
+                    spaces1((*es)->nombres(),0);
+                    file << endl;
+                    spaces1("edad",19);
+                    file << ": ";
+                    spaces((*es)->devolveredad(),0);
+                    file << endl;
+                    spaces1("id",25);
+                    file << ": ";
+                    spaces((*es)->devolverid(),0);
+                    file << endl;
+                    spaces1("sexo",19);
+                    file << ": ";
+                    spaces((*es)->devolversexo(),0);
+                    file << endl;
+                    spaces1("examen",17);
+                    file << ": ";
+                    spaces((*es)->devolverexamen(),0);
+                    spaces1("practica",14) ;
+                    file << ": ";
+                    spaces((*es)->devolverpractica(),0);
+                    spaces1("grado",17);
+                    file << ": ";
+                    spaces((*es)->devolvergrado(),0);
                     return ;
                 }
             }
-            cout<<"No existe"<<endl;
+            file <<"No existe"<<endl;
         }
 
 

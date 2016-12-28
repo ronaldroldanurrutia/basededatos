@@ -1,6 +1,8 @@
 #include<iostream>
 
+
 using namespace std;
+
 
 
 class materia1{
@@ -27,13 +29,23 @@ class materia1{
         friend ostream& operator << (ostream &o,const materia1 &p);
 };
 
+template<typename T>
+T suma(T elemento1,T elemento2){
+    return elemento1 + elemento2;
 
+}
 
-materia1& operator +(const materia1 &m1,const materia1 &m2){
-    return *(new materia1(m1.materia + "+" + m2.materia, m1.peso + m2.peso) ) ;
+materia1& operator +(materia1 &m1,materia1 &m2){
+    string elemento;
+    elemento = suma<string>(m1.devolvermateria(),"+");
+    elemento = suma<string>(elemento,m2.devolvermateria());
+    int n = suma<int>(m1.devolverpeso(),m2.devolverpeso());
+    return *(new materia1(elemento,n)) ;
 }
 ostream& operator << (ostream &o,const materia1 &p){
     o << "(" << p.materia << "," << p.peso << ")" ;
     return o ;
 }
+
+
 
