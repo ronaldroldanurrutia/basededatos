@@ -1,0 +1,44 @@
+(+matematica+quimica,400)
+(+matematica+quimica,40)
+profesor1
+nombres             : ronald
+edad                   : 20
+id                         : 20
+sexo                    : 1
+sueldo                 : 20
+Curso:
+matematica
+quimica
+sueldo: 280000profesor2
+nombres             : kevin
+edad                   : 200
+id                         : 20
+sexo                    : 1
+sueldo                 : 20
+Curso:
+matematica
+quimica
+sueldo: 28000nombres             : ronald
+edad                   : 20
+id                         : 20
+sexo                   : 1
+sueldo                 : 20No se encuentra
+profesor1
+nombres             : kevin
+edad                   : 200
+id                         : 20
+sexo                    : 1
+sueldo                 : 20
+Curso:
+matematica
+quimica
+sueldo: 28000profesor2
+nombres             : kevin
+edad                   : 200
+id                         : 20
+sexo                    : 1
+sueldo                 : 20
+Curso:
+matematica
+quimica
+sueldo: 28000
