@@ -1,0 +1,1 @@
+Esta es una base de datos que alamcena informacion sobre alumnos y profesores,para ello tiene que poner informacion de ellos en la consola y automaticamente se creara una tabla con la informacion recibida y ordenada alfabeticamente en un archivo txt.
